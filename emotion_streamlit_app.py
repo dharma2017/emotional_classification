@@ -411,7 +411,7 @@ with tab1:
                             font=dict(size=12)
                         )
                         
-                        st.plotly_chart(fig, use_container_width=True)
+                        st.plotly_chart(fig,  width='stretch')
                         
                         # Detailed probabilities table
                         st.markdown("### 📋 Detailed Scores")
@@ -424,7 +424,7 @@ with tab1:
                         
                         st.dataframe(
                             prob_df[['Emotion', 'Probability']],
-                            use_container_width=True,
+                            width='stretch',
                             hide_index=True
                         )
                 else:
@@ -462,7 +462,7 @@ with tab2:
             paper_bgcolor='white'
         )
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig,  width='stretch')
         
         # Best model highlight
         best_model = comparison_df['accuracy'].idxmax()
@@ -480,7 +480,7 @@ with tab2:
             'recall': '{:.4f}'
         }).background_gradient(cmap='RdYlGn', subset=metrics)
         
-        st.dataframe(styled_df, use_container_width=True)
+        st.dataframe(styled_df, width='stretch')
         
     except Exception as e:
         st.warning("Model comparison data not available")
@@ -520,7 +520,7 @@ with tab3:
         )
         
         fig.update_layout(height=400)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig,  width='stretch')
         
         # History table
         st.markdown("### 📜 Recent Predictions")
@@ -536,7 +536,7 @@ with tab3:
         display_df = history_df[['text', 'emotion_display', 'confidence_display', 'model']].head(10)
         display_df.columns = ['Text', 'Emotion', 'Confidence', 'Model']
         
-        st.dataframe(display_df, use_container_width=True, hide_index=True)
+        st.dataframe(display_df, width='stretch', hide_index=True)
         
         # Clear history button
         if st.button("🗑️ Clear History"):
