@@ -1,0 +1,24 @@
+numpy
+pandas
+matplotlib
+seaborn
+
+# Machine Learning
+scikit-learn
+
+# Deep Learning
+tensorflow
+keras
+
+# NLP Libraries
+nltk
+gensim
+
+# Web Framework
+streamlit
+
+# Visualization
+plotly
+
+# Utilities
+python-dotenv
