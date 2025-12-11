@@ -14,13 +14,24 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 
 # Download NLTK data if not already downloaded
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords', quiet=True)
-    nltk.download('punkt', quiet=True)
-    nltk.download('wordnet', quiet=True)
-    nltk.download('omw-1.4', quiet=True)
+@st.cache_resource
+def download_nltk_data():
+    """Download required NLTK data"""
+    resources = ['stopwords', 'punkt', 'punkt_tab', 'wordnet', 'omw-1.4', 'averaged_perceptron_tagger']
+    for resource in resources:
+        try:
+            nltk.data.find(f'tokenizers/{resource}')
+        except LookupError:
+            try:
+                nltk.data.find(f'corpora/{resource}')
+            except LookupError:
+                try:
+                    nltk.download(resource, quiet=True)
+                except:
+                    pass
+
+# Download NLTK data
+download_nltk_data()
 
 # Page configuration
 st.set_page_config(
